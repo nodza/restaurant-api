@@ -15,7 +15,7 @@ export default({ config, db }) => {
             if (err) {
                 res.send(err);
             }
-            res.json({ message: 'Restaurant saved successfully '});
+            res.json({ message: 'Restaurant saved successfully'});
         });
     });
 
@@ -50,8 +50,20 @@ export default({ config, db }) => {
                 if (err) {
                     res.send(err);
                 }
-                res.json({ message: 'Restaurant updated successfully '});
+                res.json({ message: 'Restaurant updated successfully'});
             });
+        });
+    });
+
+    // 'v1/restaurant/:id'
+    api.delete('/:id', (req, res) => {
+        Restaurant.remove({
+            _id: req.params.id
+        }, (err, restaurant) => {
+            if (err) {
+                res.send(err);
+            }
+            res.json({ message: 'Restaurant deleted successfully'});
         });
     });
 
